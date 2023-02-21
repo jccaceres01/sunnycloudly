@@ -1,0 +1,25 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+$purple: #9d89ff;
+$secondary: #182066;
+$success: #20c477;
+$info: #19b4c9;
+$warning: #e2d76e;
+$danger: #b35151;
+
+$nav-link-color: red;
+$nav-link-hover-color: #9d89ff;
+
+$theme-colors: (
+  primary: $purple,
+  secondary: $secondary,
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger,
+);
+// Include any default variable overrides here (though functions won't be available)
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/functions";
