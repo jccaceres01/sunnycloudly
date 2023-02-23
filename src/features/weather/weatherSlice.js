@@ -1,5 +1,6 @@
 // Fruits slice
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getWeather, getForecast } from '../../utils/api';
 import { config } from '../../config';
 
 // Get weather async thunk
@@ -7,14 +8,7 @@ export const getWeatherData = createAsyncThunk('weather/getWeatherData', async (
   const { coords } = api.getState().weather;
 
   if (coords.latitude && coords.longitude) {
-    try {
-      const res = await fetch(`${config.baseUrl}/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=${config.apiKey}`);
-      const dt = await res.json();
-      return dt;
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
+    return await getWeather(coords);
   } else {
     return {};
   }
@@ -25,14 +19,7 @@ export const getForecastData = createAsyncThunk('weather/getForecastData', async
   const { coords } = api.getState().weather;
 
   if (coords.latitude && coords.longitude) {
-    try {
-      const res = await fetch(`${config.baseUrl}/data/2.5/forecast?lat=${coords.latitude}&lon=${coords.longitude}&appid=${config.apiKey}`);
-      const dt = await res.json();
-      return dt;
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
+    return await getForecast(coords);
   } else {
     return {};
   }
@@ -74,7 +61,6 @@ const weatherSlice = createSlice({
       state.weather = action.payload;
       state.status = 'Weather data loaded!';
       state.loading = false;
-      console.log(`${new Date().toLocaleString()}: Weather updated!`);
     })
     .addCase(getWeatherData.rejected, (state, action) => {
       state.status = 'Error loading weather data!';
@@ -91,7 +77,6 @@ const weatherSlice = createSlice({
       state.forecast = action.payload;
       state.status = 'Forecast data loaded!';
       state.loading = false;
-      console.log(`${new Date().toLocaleString()}: forecast updated!`);
     })
     .addCase(getForecastData.rejected, (state, action) => {
       state.status = 'Error loading forecast data!';

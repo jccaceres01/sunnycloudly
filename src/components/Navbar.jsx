@@ -27,6 +27,9 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link className="nav-link text-secondary" aria-current="page" to="/current">Current</Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link text-secondary" aria-current="page" to="/bylocation">By Location</Link>
+              </li>
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">

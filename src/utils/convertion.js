@@ -4,14 +4,14 @@ export const mtok = (meters) => {
 
 export const tempConverter = (kelvinTemp, convertionType) => {
   if (['c', 'f'].includes(convertionType) ) {
-    let c = (kelvinTemp - 273.14).toFixed(2);
-    let f = c * 1.8 + 32;
+    let c = Math.round((kelvinTemp - 273.14));
+    let f = Math.round(c * 1.8 + 32);
 
     switch(convertionType.toLowerCase()) {
       case 'c':
-        return `${c} °C`;
+        return `${c}°C`;
       case 'f':
-        return `${f} °F`;
+        return `${f}°F`;
       default:
         return ``;
     }
