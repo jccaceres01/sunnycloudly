@@ -19,6 +19,7 @@ code {
   padding: 1rem 2.2rem 5rem 2.2rem;
   background-image: radial-gradient(circle, #ffffff, #f3f3f3, #e8e8e8, #ffffffd3, #ffffffbe);
   border-radius: 30px;
+  transition: height .6s ease-in-out;
 }
 
 .mini-info {
@@ -66,5 +67,6 @@ code {
   .app-wrappler {
     margin: .1rem;
     padding: 1rem .1rem 3rem .1rem;
+    transition: height .7s ease-in-out;
   }
 }

@@ -3,6 +3,7 @@ import App from '../App';
 import Home from '../pages/Home';
 import CurrentWeather from "../features/weather/CurrentWeather";
 import ByLocation from "../features/geocode/ByLocation";
+import About from "../pages/About";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/about',
-        element: <h1>About Page</h1>
+        element: <About />
       },
     ]
   }

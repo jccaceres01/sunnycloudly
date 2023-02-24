@@ -1,4 +1,5 @@
 export const mtok = (meters) => {
+  if (!meters) return 0;
   return  `${(meters / 1000).toFixed(2)} KM`;
 }
 

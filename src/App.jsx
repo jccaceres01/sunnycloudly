@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCoords, getWeatherData, getForecastData, coordsSelector } from './features/weather/weatherSlice';
+import 'animate.css';
 
 import Navbar from './components/Navbar';
 

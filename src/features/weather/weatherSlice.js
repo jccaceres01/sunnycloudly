@@ -1,7 +1,6 @@
-// Fruits slice
+// Weather slice
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getWeather, getForecast } from '../../utils/api';
-import { config } from '../../config';
 
 // Get weather async thunk
 export const getWeatherData = createAsyncThunk('weather/getWeatherData', async (arg = null, api) => {
@@ -29,6 +28,7 @@ const initialState = {
   coords: {longitude: 0, latitude: 0},
   weather: {},
   forecast: {},
+  unit: 'c',
   loading: false,
   status: '',
   errors: []
@@ -49,6 +49,9 @@ const weatherSlice = createSlice({
     },
     clearStatus: (state) => {
       state.status = '';
+    },
+    toggleUnit: (state) => {
+      state.unit = (state.unit === 'c') ? 'f' : 'c';
     }
   },
   extraReducers: (builder) => {
@@ -90,7 +93,8 @@ export const {
   setLoading,
   setCoords,
   clearErrors,
-  clearStatus
+  clearStatus,
+  toggleUnit
 } = weatherSlice.actions;
 
 // Export selectors
@@ -99,5 +103,6 @@ export const weatherSelector = state => state.weather.weather;
 export const forecastSelector = state => state.weather.forecast;
 export const coordsSelector = state => state.weather.coords;
 export const statusSelector = state => state.weather.status;
+export const unitSelector = state => state.weather.unit;
 
 export default weatherSlice.reducer;

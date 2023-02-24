@@ -32,7 +32,7 @@ const CurrentWeather = () => {
 
   return (
     <React.Fragment>
-      <div className="container-fluid p-2">
+      <div className="container-fluid p-2 animate__animated animate__fadeIn">
         <div className="row">
           <h1 className="display-6 text-primary fw-bold mb-4">Current Weather</h1>
         </div>

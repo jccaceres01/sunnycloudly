@@ -1,14 +1,23 @@
+/** @jsxImportSource @emotion/react */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Loading from './Loading'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { loadingSelector } from '../features/weather/weatherSlice';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { css } from '@emotion/react';
+import { toggleUnit, unitSelector } from '../features/weather/weatherSlice';
 
 const Navbar = () => {
 
   const loading = useSelector(loadingSelector);
+  const dispatch = useDispatch();
+  const unit = useSelector(unitSelector);
+
+  const changeUnit = () => {
+    dispatch(toggleUnit());
+  }
 
   return (
     <React.Fragment>
@@ -32,6 +41,13 @@ const Navbar = () => {
               </li>
             </ul>
             <ul className="navbar-nav">
+              <li className="nav-item">
+                <span className="nav-link text-secondary text-uppercase user-select-none fw-bold" role="button" onClick={changeUnit} css={css`
+                  color: ${unit === 'c'? 'crimson' : 'deepskyblue'} !important;
+                `}>
+                  {`°${unit}`}
+                </span>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link text-secondary" aria-current="page" to="/about">About</Link>
               </li>

@@ -34,14 +34,14 @@ const ByLocation = () => {
     }, 500);
     
     return () => clearTimeout(timer);
-  }, [criteria]);
+  }, [criteria, dispatch]);
 
   useEffect(() => {
     if (selectedLocation !== null) {
       dispatch(getLocatedWeather());
       dispatch(getLocatedForecast());
     }
-  }, [selectedLocation]);
+  }, [selectedLocation, dispatch]);
 
   const setSelectedLocation = (position) => {
     dispatch(setSelectedPosition(position));
@@ -80,7 +80,7 @@ const ByLocation = () => {
 
   const renderForecastResume = () => {
     if (forecast.list?.length > 0) {
-      return <div>
+      return <div className="animate__animated animate__fadeIn">
         <span className="display-6 text-secondary">Forecast</span>
           <div className="d-flex" css={css`width: 100%; overflow-x: auto;`}>
               { forecast.list.map((forecast, idx) => 
@@ -95,7 +95,7 @@ const ByLocation = () => {
   }
 
   return (
-      <div className="container-fluid p-2">
+      <div className="container-fluid p-2 animate__animated animate__fadeIn">
         <div className="row">
           <div className="col-sm-6">
             <h1 className="display-6 text-primary fw-bold mb-4">Find Location</h1>
@@ -104,13 +104,13 @@ const ByLocation = () => {
             <div>
               <form onSubmit={(e) => e.preventDefault() }>
                 <div className="input-group mb-2">
-                  <input type="text" className="form-control form-control-lg text-primary border border-primary" value={criteria} placeholder="Search Location" onChange={(e) => {setCriteria(e.currentTarget.value)} } />
+                  <input type="text" className="form-control form-control-lg text-primary border border-primary" value={criteria} placeholder="Search Location" onChange={(e) => {setCriteria(e.currentTarget.value)} } onBlur={() => setCriteria('') } />
                   <button type="button" className="btn btn-primary" onClick={() => setCriteria('') }>
                     <FontAwesomeIcon icon={solid('remove')} className="text-white" />
                   </button>
                 </div>
               </form>
-              <div className="position-relative">
+              <div className="position-relative ">
                 { renderLocationList() }
               </div>
             </div>
